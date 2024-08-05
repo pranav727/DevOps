@@ -1,0 +1,31 @@
+ON MASTER
++==========================================================================
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+===========================================================================
+ON NODES
+
+====>kubeadm join 172.31.27.146:6443 --token i4m1tk.icgbz7ei5wr0641a \
+        --discovery-token-ca-cert-hash sha256:8e2dc076e5d8ff9646eca6aaf943f660e5437548038fb2d5be0fed1aff348edf
+
+-> after running these we should create pods in nodes and we should create manifest.yml file in 2 nodes,then upload the manifest.yml in "Api-server"
+
+
+===================================================================================================
+
+
+After executing these command in below
+
+sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+====> If u get the error of unreachable use these
+      {
+          ->mkdir -p $HOME/.kube
+          ->sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+          ->sudo chown $(id -u):$(id -g) $HOME/.kube/config
+      }
+after successfully installing after running again above code by fixing errors, then run the below cmd  
+
+====>  kubectl get node (execute these cmd)
